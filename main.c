@@ -30,6 +30,9 @@ int main(void)
     while (1)
     {
         GPIO_ODR |= LED_1;   // PD12 ON
+        for (volatile int i = 0; i < 100000; i++); // Delay
+        GPIO_ODR &= ~LED_1;  // PD12 OFF
+        for (volatile int i = 0; i < 100000; i++); // Delay
     }
 }
 
