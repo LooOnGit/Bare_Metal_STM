@@ -1,19 +1,24 @@
-# FREERTOS_DIR = FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel
-# HEADER = -u _printf_float -specs=nano.specs -specs=nosys.specs -mfpu=fpv4-sp-d16 -mthumb -mfloat-abi=hard -mcpu=cortex-m4 -std=gnu11 -IDriver\Inc -I$(FREERTOS_DIR)/include/ -I. -I$(FREERTOS_DIR)/portable/GCC/ARM_CM4F
-
-# Compiler flags for ARM Cortex-M4
+# Compiler and flags
 CC = arm-none-eabi-gcc
+OBJCOPY = arm-none-eabi-objcopy
 CFLAGS = -mcpu=cortex-m4 -mthumb -std=gnu11 -O0 #compliation flags
-# LDFLAGS = -nostdlib -T stm32_ls.ld -Wl, -Map=  # linker flags
+LDFLAGS = -nostdlib -T stm32_ls.ld  # linker flags
 BUILD_DIR = build
 
+# Include paths
+INCLUDES = -I Inc \
+           -I Inc/STM32CubeF4/Drivers/CMSIS/Device/ST/STM32F4xx/Include \
+           -I Inc/STM32CubeF4/Drivers/CMSIS/Include \
+           -I Inc/STM32CubeF4/Drivers/STM32F4xx_HAL_Driver/Inc
 
-All:
-	$(CC) -c main.c $(CFLAGS) -o build/main.o
-	$(CC) -c  stm32f411_startup.c $(CFLAGS) -o build/startup.o
-	$(CC) -nostdlib -T stm32_ls.ld build/*.o -o build/bare_metal.elf
-	arm-none-eabi-objcopy -O ihex build/bare_metal.elf build/bare_metal.hex
-	arm-none-eabi-objcopy -O binary build/bare_metal.elf build/bare_metal.bin
+# Targets
+All: $(BUILD_DIR)
+	$(CC) -c main.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/main.o
+	$(CC) -c stm32f411_startup.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/startup.o
+	$(CC) -c Src/gpio.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/gpio.o
+	$(CC) $(LDFLAGS) $(BUILD_DIR)/*.o -o $(BUILD_DIR)/bare_metal.elf
+	$(OBJCOPY) -O ihex $(BUILD_DIR)/bare_metal.elf $(BUILD_DIR)/bare_metal.hex
+	$(OBJCOPY) -O binary $(BUILD_DIR)/bare_metal.elf $(BUILD_DIR)/bare_metal.bin
 
 $(BUILD_DIR):
 	if not exist $(BUILD_DIR) mkdir $(BUILD_DIR)
