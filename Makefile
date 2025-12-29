@@ -2,15 +2,16 @@
 # HEADER = -u _printf_float -specs=nano.specs -specs=nosys.specs -mfpu=fpv4-sp-d16 -mthumb -mfloat-abi=hard -mcpu=cortex-m4 -std=gnu11 -IDriver\Inc -I$(FREERTOS_DIR)/include/ -I. -I$(FREERTOS_DIR)/portable/GCC/ARM_CM4F
 
 # Compiler flags for ARM Cortex-M4
-CFLAGS = -mcpu=cortex-m4 -mthumb -std=gnu11 -O0
-LDFLAGS = -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -specs=nano.specs -specs=nosys.specs
+CC = arm-none-eabi-gcc
+CFLAGS = -mcpu=cortex-m4 -mthumb -std=gnu11 -O0 #compliation flags
+# LDFLAGS = -nostdlib -T stm32_ls.ld -Wl, -Map=  # linker flags
 BUILD_DIR = build
 
 
 All:
-	arm-none-eabi-gcc -c main.c $(CFLAGS) -o build/main.o
-	arm-none-eabi-gcc -c  stm32f411_startup.c $(CFLAGS) -o build/startup.o
-	arm-none-eabi-gcc -nostdlib -T stm32_ls.ld build/*.o -o build/bare_metal.elf
+	$(CC) -c main.c $(CFLAGS) -o build/main.o
+	$(CC) -c  stm32f411_startup.c $(CFLAGS) -o build/startup.o
+	$(CC) -nostdlib -T stm32_ls.ld build/*.o -o build/bare_metal.elf
 	arm-none-eabi-objcopy -O ihex build/bare_metal.elf build/bare_metal.hex
 	arm-none-eabi-objcopy -O binary build/bare_metal.elf build/bare_metal.bin
 
