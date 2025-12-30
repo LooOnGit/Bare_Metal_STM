@@ -5,6 +5,8 @@
 $ doxygen Doxyfile
 ```
 ### Show document
+```bash
+$ cd /Docs/html/index.html
 ```
 ## Run Application
 ### Build App
