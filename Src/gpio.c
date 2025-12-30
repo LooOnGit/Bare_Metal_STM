@@ -1,6 +1,21 @@
 #include "gpio.h"
 
-void hello(void)
+void initLed(void)
+{
+    /*Enable clock for GPIO*/
+    RCC->AHB1ENR |= GPIOD_EN;
+
+    /**/
+
+
+}
+
+void ledOn(void)
+{
+
+}
+
+void ledOff(void)
 {
 
 }

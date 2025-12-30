@@ -9,13 +9,14 @@ BUILD_DIR = build
 INCLUDES = -I Header_CMSIS \
            -I Header_CMSIS/STM32CubeF4/Drivers/CMSIS/Device/ST/STM32F4xx/Include \
            -I Header_CMSIS/STM32CubeF4/Drivers/CMSIS/Include \
-           -I Header_CMSIS/STM32CubeF4/Drivers/STM32F4xx_HAL_Driver/Inc
+           -I Header_CMSIS/STM32CubeF4/Drivers/STM32F4xx_HAL_Driver/Inc \
+		   -I Inc/ 
 
 # Targets
 All: $(BUILD_DIR)
-	$(CC) -c main.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/main.o
-	$(CC) -c stm32f411_startup.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/startup.o
-	$(CC) -c Src/gpio.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/gpio.o
+	$(CC) -c src/main.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/main.o
+	$(CC) -c src/stm32f411_startup.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/startup.o
+	$(CC) -c src/gpio.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/gpio.o
 	$(CC) $(LDFLAGS) $(BUILD_DIR)/*.o -o $(BUILD_DIR)/bare_metal.elf
 	$(OBJCOPY) -O ihex $(BUILD_DIR)/bare_metal.elf $(BUILD_DIR)/bare_metal.hex
 	$(OBJCOPY) -O binary $(BUILD_DIR)/bare_metal.elf $(BUILD_DIR)/bare_metal.bin
