@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "STM32_LED_Project", "index.html", [
+  [ "BARE-METAL STM32", "index.html", [
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
       [ "File Members", "globals.html", [
