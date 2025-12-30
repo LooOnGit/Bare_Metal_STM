@@ -6,10 +6,10 @@ LDFLAGS = -nostdlib -T stm32_ls.ld  # linker flags
 BUILD_DIR = build
 
 # Include paths
-INCLUDES = -I Inc \
-           -I Inc/STM32CubeF4/Drivers/CMSIS/Device/ST/STM32F4xx/Include \
-           -I Inc/STM32CubeF4/Drivers/CMSIS/Include \
-           -I Inc/STM32CubeF4/Drivers/STM32F4xx_HAL_Driver/Inc
+INCLUDES = -I Header_CMSIS \
+           -I Header_CMSIS/STM32CubeF4/Drivers/CMSIS/Device/ST/STM32F4xx/Include \
+           -I Header_CMSIS/STM32CubeF4/Drivers/CMSIS/Include \
+           -I Header_CMSIS/STM32CubeF4/Drivers/STM32F4xx_HAL_Driver/Inc
 
 # Targets
 All: $(BUILD_DIR)
