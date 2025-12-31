@@ -15,7 +15,7 @@ INCLUDES = -I Header_CMSIS \
 # Targets
 All: $(BUILD_DIR)
 	$(CC) -c src/main.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/main.o
-	$(CC) -c src/stm32f411_startup.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/startup.o
+	$(CC) -c startup/stm32f411_startup.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/startup.o
 	$(CC) -c src/gpio.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/gpio.o
 	$(CC) $(LDFLAGS) $(BUILD_DIR)/*.o -o $(BUILD_DIR)/bare_metal.elf
 	$(OBJCOPY) -O ihex $(BUILD_DIR)/bare_metal.elf $(BUILD_DIR)/bare_metal.hex

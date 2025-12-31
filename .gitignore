@@ -13,3 +13,10 @@ build/
 Docs/html/
 Docs/latex/
 *.tag
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.bak
+*.tmp
