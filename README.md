@@ -1,4 +1,11 @@
 # Bare_Metal_STM
+
+## Clone project
+```bash
+$ git clone https://github.com/LooOnGit/Bare_Metal_STM.git
+$ cd Bare_Metal_STM
+```
+
 ## Run document
 ### General file 
 ```bash
@@ -6,7 +13,7 @@ $ doxygen Doxyfile
 ```
 ### Show document
 ```bash
-$ cd /Docs/html/index.html
+$ start Docs\html\index.html
 ```
 ## Run Application
 ### Build App
