@@ -36,6 +36,26 @@ void writeGPIOPin(uint32_t state)
 }
 
 /**
+ * @brief Write logic level to GPIO pin
+ *
+ * @note This function uses the GPIO BSRR register for atomic bit
+ *       manipulation, ensuring safe operation in interrupt-driven
+ *       and multi-context environments.
+ *
+ * @param state Pin state (ON/OFF)
+ */
+void writeGPIOPinBSSR(uint32_t state)
+{
+    if(state == ON)
+    {
+        GPIOD->BSRR |= GPIO_BSRR_BS12;         //set pin D12
+    }else
+    {
+        GPIOD->BSRR |= GPIO_BSRR_BR12;        //reset pin D12
+    }
+}
+
+/**
  * @brief Read logic level from GPIO pin
  *
  * @param port Pointer to GPIO port base address
@@ -45,8 +65,8 @@ void writeGPIOPin(uint32_t state)
  *         - 0: logic low
  *         - 1: logic high
  */
-uint32_t readGPIOPin(
-uint32_t pin)
+uint32_t readGPIOPin(uint32_t pin)
 {
 
 }
+

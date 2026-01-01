@@ -22,14 +22,15 @@
  */
 
 
-#define ON     0x01UL
-#define OFF    0
+#define ON     1U
+#define OFF    0U
 
 void initGPIOPin(void);
 
 void writeGPIOPin(uint32_t state);
-
+void writeGPIOPinBSSR(uint32_t state);
 uint32_t readGPIOPin(uint32_t pin);
+
 
 
 

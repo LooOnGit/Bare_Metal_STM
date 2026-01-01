@@ -6,9 +6,9 @@ int main(void)
     initGPIOPin();
     while (1)
     {
-        writeGPIOPin(ON);
+        writeGPIOPinBSSR(ON);
         for (volatile int i = 0; i < 1000000; i++); // Delay
-        writeGPIOPin(OFF);
+        writeGPIOPinBSSR(OFF);
         for (volatile int i = 0; i < 1000000; i++); // Delay
     }
 }
