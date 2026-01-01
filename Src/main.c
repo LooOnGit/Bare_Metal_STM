@@ -3,13 +3,21 @@
 
 int main(void)
 {
+    bool btnState;
+
     initGPIOPin();
+
     while (1)
     {
-        writeGPIOPinBSSR(ON);
-        for (volatile int i = 0; i < 1000000; i++); // Delay
-        writeGPIOPinBSSR(OFF);
-        for (volatile int i = 0; i < 1000000; i++); // Delay
+        btnState = readGPIOPin(0);
+        if (btnState == true)
+        {
+            writeGPIOPinBSSR(ON);
+        }
+        else
+        {
+            writeGPIOPinBSSR(OFF);
+        }
     }
 }
 

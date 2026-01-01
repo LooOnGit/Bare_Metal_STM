@@ -14,6 +14,7 @@
 #define STM32F411xE
 #include "stm32f4xx.h" 
 #include "clock.h"
+#include <stdbool.h>
 
 /**
  * @defgroup GPIO GPIO Driver
@@ -29,7 +30,7 @@ void initGPIOPin(void);
 
 void writeGPIOPin(uint32_t state);
 void writeGPIOPinBSSR(uint32_t state);
-uint32_t readGPIOPin(uint32_t pin);
+bool readGPIOPin(uint32_t pin);
 
 
 

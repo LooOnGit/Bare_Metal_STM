@@ -18,4 +18,6 @@
 void enableRccAHB1Clk(void)
 {
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN; // Enable GPIOD clock (bit 3)
+
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN; // Enable GPIOD clock (bit 3)
 }

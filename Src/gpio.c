@@ -11,9 +11,13 @@ void initGPIOPin(void)
     //enable clock for GPIOD
     enableRccAHB1Clk();
 
-    // set mode
+    // set mode D12 to output
     GPIOD->MODER &= ~GPIO_MODER_MODER12; // Clear mode bits for pin 12
     GPIOD->MODER |= GPIO_MODER_MODER12_0;
+
+    //set mode A0 to input
+    GPIOA->MODER &= ~GPIO_MODER_MODER0; // Clear mode bits for pin 0
+
 }
 
 /**
@@ -65,8 +69,14 @@ void writeGPIOPinBSSR(uint32_t state)
  *         - 0: logic low
  *         - 1: logic high
  */
-uint32_t readGPIOPin(uint32_t pin)
+bool readGPIOPin(uint32_t pin)
 {
-
+    if(GPIOA->IDR & GPIO_IDR_ID0)
+    {
+        return false;
+    }else
+    {
+        return true;
+    }
 }
 
