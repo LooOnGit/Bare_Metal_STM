@@ -6,11 +6,14 @@
  * Configure a GPIO pin with the given mode and pull configuration.
  *
  */
-void GPIO_InitPin(void)
+void initGPIOPin(void)
 {
     //enable clock for GPIOD
-    RCC_AHB1_CLK_ENABLE();
+    enableRccAHB1Clk();
 
+    // set mode
+    GPIOD->MODER &= ~GPIO_MODER_MODER12; // Clear mode bits for pin 12
+    GPIOD->MODER |= GPIO_MODER_MODER12_0;
 }
 
 /**
@@ -23,11 +26,13 @@ void GPIO_InitPin(void)
  * @param state Pin state
  *              (0 = reset, non-zero = set)
  */
-void GPIO_WritePin(GPIO_TypeDef *port,
-                   uint32_t pin,
-                   uint32_t state)
+void writeGPIOPin(uint32_t state)
 {
-
+    GPIOD->ODR &= ~ GPIO_ODR_OD12;
+    if (state == ON)
+    {
+        GPIOD->ODR |= GPIO_ODR_OD12;
+    }
 }
 
 /**
@@ -40,20 +45,8 @@ void GPIO_WritePin(GPIO_TypeDef *port,
  *         - 0: logic low
  *         - 1: logic high
  */
-uint32_t GPIO_ReadPin(GPIO_TypeDef *port,
-                      uint32_t pin)
+uint32_t readGPIOPin(
+uint32_t pin)
 {
 
-}
-
-/**
- * @brief Toggle GPIO pin output
- *
- * @param port Pointer to GPIO port base address
- * @param pin  GPIO pin mask
- */
-void GPIO_TogglePin(GPIO_TypeDef *port,
-                    uint32_t pin)
-{
-    
 }

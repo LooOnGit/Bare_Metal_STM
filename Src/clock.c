@@ -15,7 +15,7 @@
  * @brief Enable AHB1 clock
  * @return None
  */
-void RCC_AHB1_CLK_ENABLE(void)
+void enableRccAHB1Clk(void)
 {
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN; // Enable GPIOD clock (bit 3)
 }

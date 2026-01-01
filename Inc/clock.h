@@ -14,9 +14,6 @@
 #include "stm32f4xx.h" 
 
 
-void RCC_AHB1_CLK_ENABLE(void);
-
-
-
+void enableRccAHB1Clk(void);
 
 #endif // __CLOCK_H__
