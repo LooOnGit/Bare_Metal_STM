@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include "gpio.h"
+#include "systick.h"
 
 int main(void)
 {
@@ -9,15 +10,10 @@ int main(void)
 
     while (1)
     {
-        btnState = readGPIOPin(0);
-        if (btnState == true)
-        {
-            writeGPIOPinBSSR(ON);
-        }
-        else
-        {
-            writeGPIOPinBSSR(OFF);
-        }
+        writeGPIOPinBSSR(ON);
+        systickMsecDelay(1000);
+        writeGPIOPinBSSR(OFF);
+        systickMsecDelay(1000);
     }
 }
 
