@@ -19,6 +19,7 @@ All: $(BUILD_DIR)
 	$(CC) -c src/gpio.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/gpio.o
 	$(CC) -c src/clock.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/clock.o
 	$(CC) -c src/systick.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/systick.o
+	$(CC) -c src/timer.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/timer.o
 	$(CC) $(LDFLAGS) $(BUILD_DIR)/*.o -o $(BUILD_DIR)/bare_metal.elf
 	$(OBJCOPY) -O ihex $(BUILD_DIR)/bare_metal.elf $(BUILD_DIR)/bare_metal.hex
 	$(OBJCOPY) -O binary $(BUILD_DIR)/bare_metal.elf $(BUILD_DIR)/bare_metal.bin

@@ -1,19 +1,21 @@
 #include <stdint.h>
 #include "gpio.h"
 #include "systick.h"
+#include "timer.h"
 
 int main(void)
 {
-    bool btnState;
-
+    timInit();
     initGPIOPin();
 
     while (1)
     {
         writeGPIOPinBSSR(ON);
-        systickMsecDelay(1000);
+        while (!getUIF()){}
+        clearUIF();
         writeGPIOPinBSSR(OFF);
-        systickMsecDelay(1000);
+        while (!getUIF()){}
+        clearUIF();
     }
 }
 
