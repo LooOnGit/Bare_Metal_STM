@@ -1,6 +1,5 @@
 #include "timer.h"
 
-
 /**
  * @brief  Initialize TIM2 as a basic time base.
  *
