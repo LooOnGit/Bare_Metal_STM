@@ -1,10 +1,23 @@
+/**
+ * @file    gpio.c
+ * @brief   GPIO driver implementation for STM32F411
+ * @author  Loo
+ * @version 1.0
+ * @date    2026-01-08
+ */
+
 #include "gpio.h"
 
 /**
- * @brief Initialize GPIO pin
+ * @brief Initialize GPIO pins for output and input
  *
- * Configure a GPIO pin with the given mode and pull configuration.
+ * Enables AHB1 clocks and configures:
+ * - PD12 as general purpose output (LED indicator)
+ * - PA0 as general purpose input (button/sensor)
  *
+ * @return None
+ *
+ * @see enableRccAHB1Clk()
  */
 void initGPIOPin(void)
 {

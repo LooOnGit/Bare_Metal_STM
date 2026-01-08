@@ -1,21 +1,33 @@
+/**
+ * @file    timer.c
+ * @brief   Timer/TIM2 driver implementation for STM32F411
+ * @author  Loo
+ * @version 1.0
+ * @date    2026-01-08
+ *
+ * Implements TIM2 general purpose timer configuration and polling.
+ */
+
 #include "timer.h"
 
 /**
- * @brief  Initialize TIM2 as a basic time base.
+ * @brief Initialize TIM2 as a basic time base
  *
- * This function configures TIM2 to generate an update event
- * at a fixed period using polling (UIF flag).
+ * Configures TIM2 to generate an update event at a fixed period using polling.
  *
  * Configuration details:
  * - Clock source   : APB1 (TIM2)
- * - Prescaler      : 1600 - 1  → Timer clock = 1 kHz (from 16 MHz)
+ * - Prescaler      : 1600 - 1  → Timer clock = 10 kHz (from 16 MHz)
  * - Auto-reload    : 10000 - 1 → Update event every 1 second
  * - Counter mode   : Up-counting
  *
  * After initialization, the timer starts immediately.
  *
- * @note This timer does not use interrupts. The update event
- *       must be checked by polling the UIF flag.
+ * @return None
+ *
+ * @note This timer does not use interrupts. Update events are
+ *       checked by polling the UIF flag via getUIF().
+ * @see getUIF(), clearUIF()
  */
 void timInit(void)
 {

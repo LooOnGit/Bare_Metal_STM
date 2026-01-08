@@ -1,19 +1,21 @@
+/**
+ * @file    clock.c
+ * @brief   Clock/RCC driver implementation for STM32F411
+ * @author  Loo
+ * @version 1.0
+ * @date    2026-01-08
+ */
+
 #include "clock.h"
 
 /**
- * @defgroup RCC_Driver RCC Driver
- * @brief Reset and Clock Control driver for peripheral clocks
- * @{
- */
-
-/**
- * @defgroup RCC_AHB1_Clocks AHB1 Peripheral Clocks
- * @{
- */
-
- /**
- * @brief Enable AHB1 clock
+ * @brief Enable AHB1 peripheral clocks
+ * 
+ * Enables clock access for GPIOD and GPIOA ports.
+ * 
  * @return None
+ * 
+ * @note Should be called during initialization before GPIO configuration
  */
 void enableRccAHB1Clk(void)
 {

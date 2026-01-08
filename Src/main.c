@@ -1,21 +1,18 @@
-#include <stdint.h>
+#include <stdio.h>
 #include "gpio.h"
 #include "systick.h"
 #include "timer.h"
+#include "uart.h"
 
 int main(void)
 {
-    timInit();
-    initGPIOPin();
+    /*Initialize systick timer*/
+    uartInit();
 
     while (1)
     {
-        writeGPIOPinBSSR(ON);
-        while (!getUIF()){}
-        clearUIF();
-        writeGPIOPinBSSR(OFF);
-        while (!getUIF()){}
-        clearUIF();
+        uartSendString("Hello, UART!\r\n");
+        systickMsecDelay(1000);
     }
 }
 

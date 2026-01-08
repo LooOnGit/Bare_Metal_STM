@@ -1,12 +1,41 @@
+/**
+ * @file    systick.c
+ * @brief   SysTick timer driver implementation for STM32F411
+ * @author  Loo
+ * @version 1.0
+ * @date    2026-01-08
+ *
+ * Implements millisecond delay functionality using ARM Cortex-M4 SysTick timer.
+ */
+
 #include "systick.h"
 
 /**
  * @brief Generate blocking delay in milliseconds using SysTick timer
  *
+ * Uses the ARM Cortex-M4 SysTick timer to create precise millisecond delays
+ * through polling the COUNTFLAG bit. This is a busy-wait implementation.
+ *
+ * Configuration:
+ * - System clock: 16 MHz
+ * - SysTick LOAD: ONE_MSEC_TICKS - 1 = 15999
+ * - Result: 1 millisecond per COUNTFLAG toggle
+ * - Total delay: delay × 1 ms
+ *
  * @param delay Delay time in milliseconds
  *
- * @note This function uses polling (busy-wait) and does not use
- *       SysTick interrupt (TICKINT = 0).
+ * @return None
+ *
+ * @note This is a blocking (busy-wait) function.
+ *       During delay, processor cannot execute other code.
+ *       Uses polling, not interrupts (TICKINT = 0).
+ * 
+ * @par Example:
+ * @code
+ * systickMsecDelay(500);  // Wait 500 milliseconds
+ * @endcode
+ *
+ * @see SYSTICK module documentation
  */
 void systickMsecDelay(uint32_t delay)
 {

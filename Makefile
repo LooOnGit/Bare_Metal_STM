@@ -2,7 +2,7 @@
 CC = arm-none-eabi-gcc
 OBJCOPY = arm-none-eabi-objcopy
 CFLAGS = -mcpu=cortex-m4 -mthumb -std=gnu11 -O0 #compliation flags
-LDFLAGS = -nostdlib -T stm32_ls.ld  # linker flags
+LDFLAGS = -T stm32_ls.ld -nostdlib  # linker flags
 BUILD_DIR = build
 
 # Include paths
@@ -20,6 +20,7 @@ All: $(BUILD_DIR)
 	$(CC) -c src/clock.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/clock.o
 	$(CC) -c src/systick.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/systick.o
 	$(CC) -c src/timer.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/timer.o
+	$(CC) -c src/uart.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/uart.o
 	$(CC) $(LDFLAGS) $(BUILD_DIR)/*.o -o $(BUILD_DIR)/bare_metal.elf
 	$(OBJCOPY) -O ihex $(BUILD_DIR)/bare_metal.elf $(BUILD_DIR)/bare_metal.hex
 	$(OBJCOPY) -O binary $(BUILD_DIR)/bare_metal.elf $(BUILD_DIR)/bare_metal.bin
