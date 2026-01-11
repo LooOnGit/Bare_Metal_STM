@@ -22,6 +22,7 @@ All: $(BUILD_DIR)
 	$(CC) -c src/timer.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/timer.o
 	$(CC) -c src/uart.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/uart.o
 	$(CC) -c src/adc.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/adc.o
+	$(CC) -c src/spi.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/spi.o
 	$(CC) $(LDFLAGS) $(BUILD_DIR)/*.o -o $(BUILD_DIR)/bare_metal.elf
 	$(OBJCOPY) -O ihex $(BUILD_DIR)/bare_metal.elf $(BUILD_DIR)/bare_metal.hex
 	$(OBJCOPY) -O binary $(BUILD_DIR)/bare_metal.elf $(BUILD_DIR)/bare_metal.bin
