@@ -10,14 +10,10 @@ int main(void)
     /*Initialize systick timer*/
     uartInit();
 
-    pa1ADCInit();
-    startConversion();
-
     while (1)
     {
-        uint32_t adcValue = adcRead();
-        // uartSendString("Hello, UART!\r\n");
-        // systickMsecDelay(1000);
+        uartSendString("Hello, UART!\r\n");
+        systickMsecDelay(1000);
     }
 }
 
