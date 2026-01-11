@@ -51,6 +51,6 @@
  */
 void systickMsecDelay(uint32_t delay);
 
-/** @} */"
+/** @} */
 
 #endif // __SYS_STICK_H__

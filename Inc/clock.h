@@ -34,6 +34,6 @@
  */
 void enableRccAHB1Clk(void);
 
-/** @} */"
+/** @} */
 
 #endif // __CLOCK_H__

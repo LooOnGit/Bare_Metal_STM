@@ -76,6 +76,9 @@ void uartSendString(const char *s);
  */
 int __io_putchar(int ch);
 
+
+static void setUartBaudrate(uint32_t periphClk, uint32_t baudRate);
+
 /** @} */
 
 #endif // __UART_H__

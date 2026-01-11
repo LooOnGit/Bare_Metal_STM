@@ -54,4 +54,5 @@ bool getUIF(void);
  */
 void clearUIF(void);
 
-/** @} */"
+/** @} */
+#endif // __TIMER_H__
