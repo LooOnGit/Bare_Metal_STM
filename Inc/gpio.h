@@ -70,6 +70,19 @@ void writeGPIOPin(uint32_t state);
 void writeGPIOPinBSSR(uint32_t state);
 
 /**
+ * @brief Toggle PD12 output pin state
+ * 
+ * Toggles the current state of PD12 (ON → OFF, OFF → ON).
+ * Uses BSRR register for atomic operation.
+ * 
+ * @return None
+ * 
+ * @note Atomic operation - safe for use in interrupts
+ * @note Useful for LED blinking and button toggling
+ */
+void toggleGPIOPin(void);
+
+/**
  * @brief Read logic level from PA0 input pin
  * 
  * Reads current state of PA0 from IDR register.

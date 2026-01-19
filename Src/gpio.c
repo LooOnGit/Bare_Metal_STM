@@ -73,6 +73,27 @@ void writeGPIOPinBSSR(uint32_t state)
 }
 
 /**
+ * @brief Toggle GPIO pin D12 state
+ *
+ * Toggles the current state of PD12 using BSRR register.
+ * Reads ODR to determine current state, then toggles accordingly.
+ *
+ * @return None
+ *
+ * @note Atomic operation - safe for interrupt handlers
+ */
+void toggleGPIOPin(void)
+{
+    if(GPIOD->ODR & GPIO_ODR_OD12)
+    {
+        GPIOD->BSRR |= GPIO_BSRR_BR12;  //reset pin D12
+    }else
+    {
+        GPIOD->BSRR |= GPIO_BSRR_BS12;  //set pin D12
+    }
+}
+
+/**
  * @brief Read logic level from GPIO pin
  *
  * @param port Pointer to GPIO port base address
