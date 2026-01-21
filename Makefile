@@ -25,6 +25,7 @@ All: $(BUILD_DIR)
 	$(CC) -c src/spi.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/spi.o
 	$(CC) -c src/i2c.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/i2c.o
 	$(CC) -c src/exti.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/exti.o
+	$(CC) -c src/rtc.c $(CFLAGS) $(INCLUDES) -o $(BUILD_DIR)/rtc.o
 	$(CC) $(LDFLAGS) $(BUILD_DIR)/*.o -o $(BUILD_DIR)/bare_metal.elf
 	$(OBJCOPY) -O ihex $(BUILD_DIR)/bare_metal.elf $(BUILD_DIR)/bare_metal.hex
 	$(OBJCOPY) -O binary $(BUILD_DIR)/bare_metal.elf $(BUILD_DIR)/bare_metal.bin

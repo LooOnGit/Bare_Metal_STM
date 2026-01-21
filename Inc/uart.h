@@ -53,7 +53,7 @@ void uartInit(void);
 void uartSendChar(char c);
 
 /**
- * @brief Send a null-terminated string via UART
+ * @brief Send null-terminated string via UART
  * 
  * Transmits each character in the string one by one until null terminator.
  * This is a blocking operation.
@@ -63,6 +63,21 @@ void uartSendChar(char c);
  * @return None
  */
 void uartSendString(const char *s);
+
+/**
+ * @brief Print formatted string via UART (like printf)
+ * 
+ * Formats a string with arguments and sends it via UART.
+ * Supports common format specifiers: %d, %x, %s, %c, etc.
+ * 
+ * @param format Format string (similar to printf)
+ * @param ... Variable arguments
+ * 
+ * @return None
+ * 
+ * @note Maximum 256 characters per call
+ */
+void uartPrintf(const char *format, ...);
 
 /**
  * @brief Redirect putchar to UART output (standard I/O support)
